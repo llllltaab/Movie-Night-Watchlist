@@ -1,16 +1,19 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const initialMovies = [
+  { id: 1, title: "The Matrix",                         genre: "Sci-Fi",    year: 1999, watched: false },
+  { id: 2, title: "Parasite",                           genre: "Thriller",  year: 2019, watched: false },
+  { id: 3, title: "Everything Everywhere All at Once",  genre: "Sci-Fi",    year: 2022, watched: true  },
+  { id: 4, title: "Knives Out",                         genre: "Mystery",   year: 2019, watched: false },
+  { id: 5, title: "Coco",                               genre: "Animation", year: 2017, watched: true  },
+  { id: 6, title: "Get Out",                            genre: "Horror",    year: 2017, watched: false },
+]
 
+export default function App() {
   return (
-   <>
-   </>
+    <div>
+
+    </div>
   )
 }
-
-export default App
