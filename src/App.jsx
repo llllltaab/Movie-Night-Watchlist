@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import MovieCard from './MovieCard'
 import './App.css'
 
 const initialMovies = [
@@ -11,9 +12,28 @@ const initialMovies = [
 ]
 
 export default function App() {
+  const [movies, setMovies] = useState(initialMovies)
+
+  function toggleWatched(id) {
+    setMovies( 
+      movies.map((movie) => {
+        if(movie.id === id) {
+          return {
+            ...movie,
+            watched: !movie.watched
+          }
+        }
+      })
+    )
+  }
+  
   return (
     <div>
+      <h1>Movie Night</h1>
 
+      {movies.map((movie) => {
+        return <MovieCard key={movie.id} movie={movie}/>
+      })}
     </div>
   )
 }
