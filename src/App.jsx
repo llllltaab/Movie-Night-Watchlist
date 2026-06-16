@@ -3,36 +3,52 @@ import MovieCard from './MovieCard'
 import './App.css'
 
 const initialMovies = [
-  { id: 1, title: "The Matrix",                         genre: "Sci-Fi",    year: 1999, watched: false },
-  { id: 2, title: "Parasite",                           genre: "Thriller",  year: 2019, watched: false },
-  { id: 3, title: "Everything Everywhere All at Once",  genre: "Sci-Fi",    year: 2022, watched: true  },
-  { id: 4, title: "Knives Out",                         genre: "Mystery",   year: 2019, watched: false },
-  { id: 5, title: "Coco",                               genre: "Animation", year: 2017, watched: true  },
-  { id: 6, title: "Get Out",                            genre: "Horror",    year: 2017, watched: false },
+  { id: 1, title: "The Matrix", genre: "Sci-Fi", year: 1999, watched: false },
+  { id: 2, title: "Parasite", genre: "Thriller", year: 2019, watched: false },
+  { id: 3, title: "Everything Everywhere All at Once", genre: "Sci-Fi", year: 2022, watched: true },
+  { id: 4, title: "Knives Out", genre: "Mystery", year: 2019, watched: false },
+  { id: 5, title: "Coco", genre: "Animation", year: 2017, watched: true },
+  { id: 6, title: "Get Out", genre: "Horror", year: 2017, watched: false },
 ]
 
 export default function App() {
   const [movies, setMovies] = useState(initialMovies)
 
+  const totalNum = movies.length
+  const watchedNum = movies.filter((movie) => movie.watched).length
+  const notWatchedNum = movies.filter((movie) => !movie.watched).length
+
   function toggleWatched(id) {
-    setMovies( 
+    setMovies(
       movies.map((movie) => {
-        if(movie.id === id) {
+        if (movie.id === id) {
           return {
             ...movie,
             watched: !movie.watched
           }
         }
+
+        return movie;
       })
     )
   }
-  
+
   return (
     <div>
       <h1>Movie Night</h1>
 
+      <p>
+        Total movies: {totalNum} | Watched: {watchedNum} | Not watched: {notWatchedNum}
+      </p>
+
       {movies.map((movie) => {
-        return <MovieCard key={movie.id} movie={movie}/>
+        return <MovieCard
+          key={movie.id}
+          movie={movie}
+          onToggle={() => {
+            toggleWatched(movie.id);
+          }}
+        />
       })}
     </div>
   )

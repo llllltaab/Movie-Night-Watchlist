@@ -1,15 +1,19 @@
-function MovieCard({ movie }) {
+function MovieCard(props) {
     let text = "";
+    let label = "";
     
-    if(movie.watched) {
+    if(props.movie.watched) {
         text = "Watched"
+        label = "Mark as Unwatched"
     } else {
         text = "Not watched yet"
+        label = "Mark as Watched"
     }
     
     return (
         <div>
-            {`${movie.title} ${movie.genre} ${movie.year} ${text}`}
+            {`${props.movie.title} ${props.movie.genre} ${props.movie.year} ${text}`}
+            <button onClick={() => {props.onToggle()}}>{label}</button>
         </div>
     )
 }
